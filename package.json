@@ -1,0 +1,46 @@
+{
+  "name": "aegis",
+  "version": "0.1.0",
+  "description": "Agent Skills + CLI: học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack và mọi state manager.",
+  "type": "module",
+  "bin": {
+    "aegis": "bin/aegis.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/",
+    "test:ts": "node --test reference/ts/",
+    "test:all": "node --test test/ && node --test reference/ts/",
+    "scan-secrets": "node scripts/secret-scan.mjs .",
+    "lint-skills": "node scripts/lint-skills.mjs",
+    "vectors": "node scripts/gen-demo-vectors.mjs"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "skills",
+    "spec",
+    "profiles",
+    "reference",
+    "templates",
+    "scripts",
+    "examples"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nvdhai2003mobiledev/aegis.git"
+  },
+  "keywords": [
+    "agent-skills",
+    "claude-code",
+    "codex",
+    "insurance",
+    "api-integration",
+    "react-native",
+    "flutter",
+    "cli"
+  ]
+}

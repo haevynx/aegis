@@ -1,0 +1,13 @@
+{
+  "name": "demo-insurance-app",
+  "private": true,
+  "description": "App tham chiếu GIẢ để test scanner của aegis. Mọi tên, mã, URL đều bịa.",
+  "dependencies": {
+    "react": "19.0.0",
+    "react-native": "0.79.0",
+    "@reduxjs/toolkit": "^2.5.0",
+    "react-redux": "^9.2.0",
+    "axios": "^1.7.9",
+    "react-hook-form": "^7.54.0"
+  }
+}
