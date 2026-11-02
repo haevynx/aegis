@@ -1,6 +1,6 @@
 {
   "name": "aegis",
-  "description": "aegis — Agent Skills học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack.",
+  "description": "aegis — Agent Skills that learn insurance backends and business features from reference apps and integrate them into any stack.",
   "owner": {
     "name": "aegis contributors"
   },
@@ -8,7 +8,7 @@
     {
       "name": "aegis",
       "source": "./",
-      "description": "Học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack và mọi state manager.",
+      "description": "Agent Skills + CLI that learn an insurance backend and its business features from a reference app, then integrate them into any stack and any state manager (Learn → Ask → Do).",
       "version": "0.2.3"
     }
   ]

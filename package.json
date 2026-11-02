@@ -2,7 +2,7 @@
   "name": "aegis",
   "private": true,
   "version": "0.2.3",
-  "description": "Agent Skills + CLI: học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack và mọi state manager.",
+  "description": "Agent Skills + CLI that learn an insurance backend and its business features from a reference app, then integrate them into any stack and any state manager (Learn → Ask → Do).",
   "type": "module",
   "bin": {
     "aegis": "bin/aegis.mjs"
