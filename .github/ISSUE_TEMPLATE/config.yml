@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: 🔒 Báo lỗi bảo mật / Security vulnerability
-    url: https://github.com/nvdhai2003mobiledev/aegis/security/advisories/new
+    url: https://github.com/haevynx/aegis/security/advisories/new
     about: Không mở issue công khai cho lỗi bảo mật hoặc dữ liệu bị lộ. Report privately.
   - name: 💬 Hỏi đáp / Questions
-    url: https://github.com/nvdhai2003mobiledev/aegis/discussions
+    url: https://github.com/haevynx/aegis/discussions
     about: Câu hỏi về cách dùng, ý tưởng — dùng Discussions.

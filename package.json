@@ -1,7 +1,7 @@
 {
   "name": "aegis",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Agent Skills + CLI: học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack và mọi state manager.",
   "type": "module",
   "bin": {
@@ -40,7 +40,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nvdhai2003mobiledev/aegis.git"
+    "url": "git+https://github.com/haevynx/aegis.git"
   },
   "keywords": [
     "agent-skills",
@@ -52,8 +52,8 @@
     "flutter",
     "cli"
   ],
-  "homepage": "https://github.com/nvdhai2003mobiledev/aegis#readme",
+  "homepage": "https://github.com/haevynx/aegis#readme",
   "bugs": {
-    "url": "https://github.com/nvdhai2003mobiledev/aegis/issues"
+    "url": "https://github.com/haevynx/aegis/issues"
   }
 }

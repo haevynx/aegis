@@ -1,12 +1,12 @@
-# aegis installer (Windows PowerShell) — https://github.com/nvdhai2003mobiledev/aegis
+# aegis installer (Windows PowerShell) — https://github.com/haevynx/aegis
 #
-#   irm https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/haevynx/aegis/main/install.ps1 | iex
 #
 # Biến môi trường: AEGIS_VERSION (mặc định: bản release mới nhất; hoặc tag / main), AEGIS_HOME (mặc định ~\.aegis), AEGIS_SOURCE_DIR (cài từ thư mục local).
 # Không cần quyền admin. Không sửa PATH hệ thống.
 $ErrorActionPreference = 'Stop'
 
-$Repo = 'nvdhai2003mobiledev/aegis'
+$Repo = 'haevynx/aegis'
 $Ref = if ($env:AEGIS_VERSION) { $env:AEGIS_VERSION } else { 'latest' }
 if (-not $env:AEGIS_HOME) { $env:AEGIS_HOME = Join-Path $HOME '.aegis' }
 

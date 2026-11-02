@@ -1,8 +1,8 @@
 #!/bin/sh
-# aegis installer — https://github.com/nvdhai2003mobiledev/aegis
+# aegis installer — https://github.com/haevynx/aegis
 #
-#   curl -fsSL https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.sh | sh
-#   curl -fsSL https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.sh | sh -s -- --project
+#   curl -fsSL https://raw.githubusercontent.com/haevynx/aegis/main/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/haevynx/aegis/main/install.sh | sh -s -- --project
 #
 # Biến môi trường:
 #   AEGIS_VERSION     tag hoặc nhánh (mặc định: bản release mới nhất), vd v0.2.1 hoặc main
@@ -12,7 +12,7 @@
 # Không cần sudo. Không sửa file cấu hình shell của bạn.
 set -eu
 
-REPO="nvdhai2003mobiledev/aegis"
+REPO="haevynx/aegis"
 REF="${AEGIS_VERSION:-latest}"
 AEGIS_HOME="${AEGIS_HOME:-$HOME/.aegis}"
 export AEGIS_HOME

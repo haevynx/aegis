@@ -9,7 +9,7 @@
       "name": "aegis",
       "source": "./",
       "description": "Học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack và mọi state manager.",
-      "version": "0.2.2"
+      "version": "0.2.3"
     }
   ]
 }

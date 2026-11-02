@@ -1,12 +1,12 @@
 {
   "name": "aegis",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack và mọi state manager — Học → Hỏi → Làm.",
   "author": {
     "name": "aegis contributors"
   },
-  "homepage": "https://github.com/nvdhai2003mobiledev/aegis",
-  "repository": "https://github.com/nvdhai2003mobiledev/aegis",
+  "homepage": "https://github.com/haevynx/aegis",
+  "repository": "https://github.com/haevynx/aegis",
   "license": "MIT",
   "keywords": [
     "insurance",

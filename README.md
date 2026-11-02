@@ -4,8 +4,8 @@
 
 <h3>Learn an insurance backend and its business features from a reference app — then integrate them into any stack and any state manager.</h3>
 
-[![CI](https://github.com/nvdhai2003mobiledev/aegis/actions/workflows/ci.yml/badge.svg)](https://github.com/nvdhai2003mobiledev/aegis/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/nvdhai2003mobiledev/aegis?color=2563eb&label=release)](https://github.com/nvdhai2003mobiledev/aegis/releases)
+[![CI](https://github.com/haevynx/aegis/actions/workflows/ci.yml/badge.svg)](https://github.com/haevynx/aegis/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/haevynx/aegis?color=2563eb&label=release)](https://github.com/haevynx/aegis/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-14b8a6)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A518-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Zero dependencies](https://img.shields.io/badge/dependencies-0-0ea5e9)](package.json)
@@ -40,13 +40,13 @@ New insurance apps usually start as a _clone of an old one_. Fast — but the ne
 **macOS / Linux**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/haevynx/aegis/main/install.sh | sh
 ```
 
 **Windows (PowerShell)**
 
 ```powershell
-irm https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/haevynx/aegis/main/install.ps1 | iex
 ```
 
 Run it from the root of the project you are integrating. The installer adds the skills for **Claude Code** (`~/.claude/skills`) and **Codex** (`~/.agents/skills`), installs the `aegis` CLI into `~/.aegis/bin`, and configures the current project (a rules block in `CLAUDE.md`/`AGENTS.md`, `.aegis/`, `.env.example`, `.gitignore`). No sudo, no shell-profile edits, no dependencies. Installs the **latest release** by default.
@@ -56,10 +56,10 @@ Run it from the root of the project you are integrating. The installer adds the 
 
 | Channel                 | Command                                                                                | Installs     |
 | ----------------------- | -------------------------------------------------------------------------------------- | ------------ |
-| Claude Code plugin      | `/plugin marketplace add nvdhai2003mobiledev/aegis` then `/plugin install aegis@aegis` | Skills       |
-| Skills CLI (70+ agents) | `npx skills add nvdhai2003mobiledev/aegis`                                             | Skills       |
-| From GitHub             | `npx github:nvdhai2003mobiledev/aegis`                                                 | Skills + CLI |
-| Pinned version          | `curl -fsSL …/install.sh \| AEGIS_VERSION=v0.2.2 sh`                                   | Skills + CLI |
+| Claude Code plugin      | `/plugin marketplace add haevynx/aegis` then `/plugin install aegis@aegis` | Skills       |
+| Skills CLI (70+ agents) | `npx skills add haevynx/aegis`                                             | Skills       |
+| From GitHub             | `npx github:haevynx/aegis`                                                 | Skills + CLI |
+| Pinned version          | `curl -fsSL …/install.sh \| AEGIS_VERSION=v0.2.3 sh`                                   | Skills + CLI |
 | Development build       | `curl -fsSL …/install.sh \| AEGIS_VERSION=main sh`                                     | Skills + CLI |
 
 Installer flags (after `sh -s --`): `--project` (install skills into the project instead of globally), `--skills-only` (don't configure the current directory), `--hooks` (add a secret-scanning pre-commit hook).
@@ -179,7 +179,7 @@ The protocol is a [profile](spec/profile-schema.md): envelope, headers, signing 
 
 ## 🤝 Contributing
 
-Adapters for new stacks/state managers, new signing recipes and scanner heuristics are very welcome — see [CONTRIBUTING.md](CONTRIBUTING.md), the [Code of Conduct](CODE_OF_CONDUCT.md) and the [CHANGELOG](CHANGELOG.md). Questions → [Discussions](https://github.com/nvdhai2003mobiledev/aegis/discussions). One non-negotiable rule: **no real company data in this repo.**
+Adapters for new stacks/state managers, new signing recipes and scanner heuristics are very welcome — see [CONTRIBUTING.md](CONTRIBUTING.md), the [Code of Conduct](CODE_OF_CONDUCT.md) and the [CHANGELOG](CHANGELOG.md). Questions → [Discussions](https://github.com/haevynx/aegis/discussions). One non-negotiable rule: **no real company data in this repo.**
 
 ## 📄 License
 
