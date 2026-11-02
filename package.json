@@ -1,6 +1,6 @@
 {
-  "name": "aegis",
-  "version": "0.1.0",
+  "name": "aegis-insurance",
+  "version": "0.2.0",
   "description": "Agent Skills + CLI: học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack và mọi state manager.",
   "type": "module",
   "bin": {
@@ -15,7 +15,8 @@
     "test:all": "node scripts/run-tests.mjs test reference/ts",
     "scan-secrets": "node scripts/secret-scan.mjs .",
     "lint-skills": "node scripts/lint-skills.mjs",
-    "vectors": "node scripts/gen-demo-vectors.mjs"
+    "vectors": "node scripts/gen-demo-vectors.mjs",
+    "prepublishOnly": "node scripts/secret-scan.mjs . && node scripts/lint-skills.mjs && npm test"
   },
   "files": [
     "bin",
@@ -23,10 +24,18 @@
     "skills",
     "spec",
     "profiles",
-    "reference",
+    "reference/ts",
+    "reference/dart/lib",
+    "reference/dart/test",
+    "reference/dart/pubspec.yaml",
     "templates",
     "scripts",
-    "examples"
+    "examples",
+    "install.sh",
+    "install.ps1",
+    "README.en.md",
+    "SECURITY.md",
+    "assets"
   ],
   "license": "MIT",
   "repository": {
@@ -42,5 +51,12 @@
     "react-native",
     "flutter",
     "cli"
-  ]
+  ],
+  "homepage": "https://github.com/nvdhai2003mobiledev/aegis#readme",
+  "bugs": {
+    "url": "https://github.com/nvdhai2003mobiledev/aegis/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

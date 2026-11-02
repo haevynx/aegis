@@ -1,12 +1,15 @@
 {
   "name": "aegis",
-  "owner": {"name": "aegis contributors"},
+  "description": "aegis — Agent Skills học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack.",
+  "owner": {
+    "name": "aegis contributors"
+  },
   "plugins": [
     {
       "name": "aegis",
       "source": "./",
       "description": "Học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack và mọi state manager.",
-      "version": "0.1.0"
+      "version": "0.2.0"
     }
   ]
 }

@@ -144,3 +144,25 @@ test('lệnh lạ → exit 2 + help', () => {
   assert.equal(r.code, 2);
   assert.match(r.out, /Cài đặt/);
 });
+
+test('--version / --help không bao giờ chạy install', () => {
+  const {home, proj, run} = sandbox();
+  for (const flag of ['--version', '-v', '--help', '-h']) {
+    const r = run(flag);
+    assert.equal(r.code, 0, flag);
+    assert.ok(!existsSync(join(home, '.claude')), `${flag} đã cài skill`);
+    assert.ok(!existsSync(join(proj, '.aegis')), `${flag} đã cấu hình project`);
+  }
+  assert.match(run('--version').out.trim(), /^\d+\.\d+\.\d+$/);
+});
+
+test('bản đã cài (~/.aegis/kit) gọi không tham số → chỉ in help, không cấu hình project', () => {
+  const {home, proj, run} = sandbox();
+  run('install', '--skills-only');
+  const kitBin = join(home, '.aegis/kit/bin/aegis.mjs');
+  const r = spawnSync(process.execPath, [kitBin], {cwd: proj, encoding: 'utf8', env: {...process.env, HOME: home, AEGIS_HOME: join(home, '.aegis')}});
+  assert.equal(r.status, 0);
+  assert.match(r.stdout, /Cài đặt/);
+  assert.ok(!existsSync(join(proj, '.aegis')));
+  assert.ok(!existsSync(join(proj, 'CLAUDE.md')));
+});

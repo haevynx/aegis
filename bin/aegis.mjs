@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 // aegis — Học → Hỏi → Làm: tích hợp backend & nghiệp vụ bảo hiểm vào mọi stack.
 import {parseArgs, out} from '../lib/cli/args.mjs';
-import {KIT_VERSION} from '../lib/project.mjs';
+import {KIT_VERSION, isInstalledKit} from '../lib/project.mjs';
 
 const HELP = `aegis ${KIT_VERSION}
 
 Cài đặt
   aegis [install] [--project] [--hooks] [--skills-only]   cài skill (global; --project: vào project) + cấu hình project hiện tại
-  aegis update                                            cài lại skill từ bản kit đang chạy
+  aegis update [--version vX.Y.Z]                         cập nhật kit + skill lên bản mới nhất
   aegis uninstall [--project]                             gỡ skill (giữ .aegis/)
 
 Học
@@ -31,7 +31,7 @@ Tuỳ chọn chung: --dir <project>`;
 
 const COMMANDS = {
   install: () => import('../lib/cli/install.mjs').then(m => m.cmdInstall),
-  update: () => import('../lib/cli/install.mjs').then(m => m.cmdInstall),
+  update: () => import('../lib/cli/install.mjs').then(m => m.cmdUpdate),
   uninstall: () => import('../lib/cli/install.mjs').then(m => m.cmdUninstall),
   ref: () => import('../lib/cli/ref.mjs').then(m => m.cmdRef),
   scan: () => import('../lib/cli/scan.mjs').then(m => m.cmdScan),
@@ -54,15 +54,23 @@ const COMMANDS = {
 };
 
 const argv = process.argv.slice(2);
-const [cmd = 'install', ...rest] = argv[0]?.startsWith('--') ? ['install', ...argv] : argv;
-if (cmd === 'help' || cmd === '-h' || argv.includes('--help')) {
-  console.log(HELP);
-  process.exit(0);
-}
-if (cmd === '--version' || cmd === 'version') {
+// --version / --help phải xử lý TRƯỚC khi mặc định sang `install` (tránh cài nhầm khi chỉ hỏi phiên bản).
+if (['--version', '-v', 'version'].includes(argv[0])) {
   console.log(KIT_VERSION);
   process.exit(0);
 }
+if (['help', '-h', '--help'].includes(argv[0]) || (argv.includes('--help') && !argv[0]?.startsWith('--'))) {
+  console.log(HELP);
+  process.exit(0);
+}
+// Chỉ khi chạy qua npx/installer (chưa phải bản đã cài ở ~/.aegis/kit) thì "không tham số" mới nghĩa là install.
+// Bản đã cài gọi không tham số → in help (tránh vô tình cấu hình thư mục hiện tại).
+const installedCopy = isInstalledKit();
+if (installedCopy && (!argv.length || argv[0].startsWith('--'))) {
+  console.log(HELP);
+  process.exit(argv.length ? 2 : 0);
+}
+const [cmd = 'install', ...rest] = argv[0]?.startsWith('--') ? ['install', ...argv] : argv;
 const load = COMMANDS[cmd];
 if (!load) {
   out.err(`lệnh không tồn tại: ${cmd}\n`);
@@ -71,7 +79,7 @@ if (!load) {
 }
 try {
   const fn = await load();
-  process.exitCode = (await fn(parseArgs(rest, {bool: ['project', 'hooks', 'skills-only', 'force', 'verbose', 'json', 'demo', 'missing', 'keep-kit']}))) ?? 0;
+  process.exitCode = (await fn(parseArgs(rest, {bool: ['project', 'hooks', 'skills-only', 'force', 'verbose', 'json', 'demo', 'missing', 'keep-kit', 'local']}))) ?? 0;
 } catch (e) {
   out.err(e?.message || String(e));
   if (process.env.AEGIS_DEBUG) console.error(e);

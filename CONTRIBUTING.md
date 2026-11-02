@@ -20,3 +20,11 @@ Heuristic phải **trung lập** (không tên app/khách hàng). Thêm fixture b
 
 ## Luật dữ liệu
 Xem [SECURITY.md](SECURITY.md). Fixture giống secret trong test phải ghép chuỗi lúc chạy.
+
+## Phát hành
+1. Tăng `version` trong `package.json`, `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`.
+2. `npm test && npm run test:ts`, `node scripts/secret-scan.mjs . --denylist ~/.aegis/denylist.txt`.
+3. Commit, `git tag vX.Y.Z && git push --follow-tags`, `gh release create vX.Y.Z --generate-notes`.
+4. `npm publish` (chạy `prepublishOnly`: quét secret + lint skill + test).
+
+Installer `install.sh`/`install.ps1` lấy nhánh `main` mặc định; `AEGIS_VERSION=vX.Y.Z` để cài đúng bản đã phát hành.
