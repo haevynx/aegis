@@ -1,10 +1,19 @@
 {
   "name": "aegis",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack và mọi state manager — Học → Hỏi → Làm.",
-  "author": {"name": "aegis contributors"},
+  "author": {
+    "name": "aegis contributors"
+  },
   "homepage": "https://github.com/nvdhai2003mobiledev/aegis",
   "repository": "https://github.com/nvdhai2003mobiledev/aegis",
   "license": "MIT",
-  "keywords": ["insurance", "api", "integration", "react-native", "flutter", "agent-skills"]
+  "keywords": [
+    "insurance",
+    "api",
+    "integration",
+    "react-native",
+    "flutter",
+    "agent-skills"
+  ]
 }
