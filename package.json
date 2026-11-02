@@ -1,6 +1,6 @@
 {
   "name": "aegis-insurance",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Agent Skills + CLI: học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack và mọi state manager.",
   "type": "module",
   "bin": {
@@ -35,7 +35,8 @@
     "install.ps1",
     "README.en.md",
     "SECURITY.md",
-    "assets"
+    "assets",
+    "CHANGELOG.md"
   ],
   "license": "MIT",
   "repository": {

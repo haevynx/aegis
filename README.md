@@ -5,7 +5,7 @@
 <h3>Học backend & nghiệp vụ bảo hiểm từ app tham chiếu — tích hợp vào mọi stack, mọi state manager.</h3>
 
 [![CI](https://github.com/nvdhai2003mobiledev/aegis/actions/workflows/ci.yml/badge.svg)](https://github.com/nvdhai2003mobiledev/aegis/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/aegis-insurance?color=2563eb&label=npm)](https://www.npmjs.com/package/aegis-insurance)
+[![Release](https://img.shields.io/github/v/release/nvdhai2003mobiledev/aegis?color=2563eb&label=release)](https://github.com/nvdhai2003mobiledev/aegis/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-14b8a6)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A518-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Zero dependencies](https://img.shields.io/badge/dependencies-0-0ea5e9)](package.json)
@@ -49,13 +49,7 @@ curl -fsSL https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/inst
 irm https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.ps1 | iex
 ```
 
-**npm**
-
-```bash
-npx aegis-insurance
-```
-
-Chạy trong thư mục gốc của project cần tích hợp. Installer cài skill cho **Claude Code** (`~/.claude/skills`) và **Codex** (`~/.agents/skills`), cài CLI `aegis` vào `~/.aegis/bin`, rồi cấu hình project hiện tại (khối luật trong `CLAUDE.md`/`AGENTS.md`, `.aegis/`, `.env.example`, `.gitignore`). Không cần sudo, không sửa file cấu hình shell, không cài dependency nào.
+Chạy trong thư mục gốc của project cần tích hợp. Installer cài skill cho **Claude Code** (`~/.claude/skills`) và **Codex** (`~/.agents/skills`), cài CLI `aegis` vào `~/.aegis/bin`, rồi cấu hình project hiện tại (khối luật trong `CLAUDE.md`/`AGENTS.md`, `.aegis/`, `.env.example`, `.gitignore`). Không cần sudo, không sửa file cấu hình shell, không cài dependency nào. Mặc định cài **bản release mới nhất**.
 
 <details>
 <summary><b>Cách cài khác</b></summary>
@@ -64,10 +58,12 @@ Chạy trong thư mục gốc của project cần tích hợp. Installer cài sk
 |---|---|---|
 | Claude Code plugin | `/plugin marketplace add nvdhai2003mobiledev/aegis` rồi `/plugin install aegis@aegis` | Skill |
 | Skills CLI (70+ agent) | `npx skills add nvdhai2003mobiledev/aegis` | Skill |
+| npm *(sắp phát hành)* | `npx aegis-insurance` | Skill + CLI |
 | Từ GitHub | `npx github:nvdhai2003mobiledev/aegis` | Skill + CLI |
-| Phiên bản cố định | `curl -fsSL …/install.sh \| AEGIS_VERSION=v0.2.0 sh` | Skill + CLI |
+| Phiên bản cố định | `curl -fsSL …/install.sh \| AEGIS_VERSION=v0.2.1 sh` | Skill + CLI |
+| Bản đang phát triển | `curl -fsSL …/install.sh \| AEGIS_VERSION=main sh` | Skill + CLI |
 
-Tuỳ chọn installer (truyền sau `sh -s --` hoặc `npx aegis-insurance`):
+Tuỳ chọn installer (truyền sau `sh -s --`):
 
 | Cờ | Ý nghĩa |
 |---|---|
@@ -213,7 +209,7 @@ Không — secret trong app đã build luôn trích xuất được. Đó là th
 
 ## 🤝 Đóng góp
 
-Rất hoan nghênh — đặc biệt là adapter cho stack/state mới, công thức ký mới, heuristic scanner. Xem [CONTRIBUTING.md](CONTRIBUTING.md). Luật duy nhất không thương lượng: **không đưa dữ liệu thật của bất kỳ công ty nào vào repo.**
+Rất hoan nghênh — đặc biệt là adapter cho stack/state mới, công thức ký mới, heuristic scanner. Xem [CONTRIBUTING.md](CONTRIBUTING.md), [Quy tắc ứng xử](CODE_OF_CONDUCT.md) và [CHANGELOG](CHANGELOG.md). Câu hỏi → [Discussions](https://github.com/nvdhai2003mobiledev/aegis/discussions). Luật duy nhất không thương lượng: **không đưa dữ liệu thật của bất kỳ công ty nào vào repo.**
 
 ## 📄 Giấy phép
 

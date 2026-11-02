@@ -5,7 +5,7 @@
 #   curl -fsSL https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.sh | sh -s -- --project
 #
 # Biến môi trường:
-#   AEGIS_VERSION     tag hoặc nhánh (mặc định: main), vd v0.2.0
+#   AEGIS_VERSION     tag hoặc nhánh (mặc định: bản release mới nhất), vd v0.2.1 hoặc main
 #   AEGIS_HOME        thư mục cài (mặc định: ~/.aegis)
 #   AEGIS_SOURCE_DIR  cài từ thư mục local thay vì tải (dùng cho CI / phát triển)
 #
@@ -13,7 +13,7 @@
 set -eu
 
 REPO="nvdhai2003mobiledev/aegis"
-REF="${AEGIS_VERSION:-main}"
+REF="${AEGIS_VERSION:-latest}"
 AEGIS_HOME="${AEGIS_HOME:-$HOME/.aegis}"
 export AEGIS_HOME
 
@@ -31,15 +31,19 @@ if [ -n "${AEGIS_SOURCE_DIR:-}" ]; then
   src="$AEGIS_SOURCE_DIR"
   info "cài từ thư mục local: $src"
 else
+  if command -v curl >/dev/null 2>&1; then dl() { curl -fsSL "$1" -o "$2"; }
+  elif command -v wget >/dev/null 2>&1; then dl() { wget -qO "$2" "$1"; }
+  else fail "cần curl hoặc wget"; fi
+  if [ "$REF" = "latest" ]; then
+    REF=""
+    if dl "https://api.github.com/repos/$REPO/releases/latest" "$tmp/latest.json" 2>/dev/null; then
+      REF="$(node -e 'try{process.stdout.write(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).tag_name||"")}catch{}' "$tmp/latest.json")"
+    fi
+    [ -n "$REF" ] || { REF="main"; info "không lấy được bản release mới nhất (giới hạn API?) — dùng nhánh main"; }
+  fi
   url="https://codeload.github.com/$REPO/tar.gz/$REF"
   info "tải $REPO@$REF"
-  if command -v curl >/dev/null 2>&1; then
-    curl -fsSL "$url" -o "$tmp/aegis.tgz" || fail "không tải được $url"
-  elif command -v wget >/dev/null 2>&1; then
-    wget -qO "$tmp/aegis.tgz" "$url" || fail "không tải được $url"
-  else
-    fail "cần curl hoặc wget"
-  fi
+  dl "$url" "$tmp/aegis.tgz" || fail "không tải được $url"
   mkdir -p "$tmp/src"
   tar -xzf "$tmp/aegis.tgz" -C "$tmp/src" --strip-components=1 || fail "giải nén thất bại"
   src="$tmp/src"

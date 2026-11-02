@@ -1,0 +1,30 @@
+name: ✨ Đề xuất / Feature request
+description: Stack/state manager mới, công thức ký mới, heuristic scanner, lệnh CLI…
+labels: [enhancement]
+body:
+  - type: checkboxes
+    id: no-real-data
+    attributes:
+      label: Xác nhận / Confirmation
+      options:
+        - label: Đề xuất KHÔNG chứa secret hay dữ liệu thật của bất kỳ công ty nào / contains no secrets or real company data
+          required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Loại / Kind
+      options: [Stack mới / new stack, State manager mới, Công thức ký mới / signing recipe, Scanner heuristic, Lệnh CLI / CLI command, Skill / tài liệu, Khác / other]
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Vấn đề / Problem
+      description: Bạn đang gặp khó khăn gì? Ví dụ cụ thể (dùng dữ liệu giả).
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Đề xuất / Proposal
+      description: Với công thức ký — mô tả bằng toán (input, hàm băm, encoding), không bằng tên khách hàng.
