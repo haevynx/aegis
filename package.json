@@ -33,10 +33,9 @@
     "examples",
     "install.sh",
     "install.ps1",
-    "README.en.md",
     "SECURITY.md",
-    "assets",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "README.vi.md"
   ],
   "license": "MIT",
   "repository": {
