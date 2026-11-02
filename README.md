@@ -217,4 +217,4 @@ Rất hoan nghênh — đặc biệt là adapter cho stack/state mới, công th
 
 ## 📄 Giấy phép
 
-[MIT](LICENSE). Mô hình *Learn → Ask → Do* lấy cảm hứng từ [pythia](https://github.com/thaildhe172591/pythia).
+[MIT](LICENSE). Mô hình *Learn → Ask → Do*.
