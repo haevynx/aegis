@@ -1,7 +1,7 @@
 <!-- aegis:begin — khối này do `aegis install` quản lý; sửa ngoài khối, không sửa trong khối -->
 ## Aegis — tích hợp backend bảo hiểm (Học → Hỏi → Làm)
 
-Project này dùng **aegis** để học backend và nghiệp vụ từ app tham chiếu. CLI: `aegis` (chưa có trên PATH: `node ~/.aegis/kit/bin/aegis.mjs`; chưa cài CLI — vd chỉ cài skill qua plugin: `npx aegis-insurance --skills-only` hoặc `curl -fsSL https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.sh | sh`). Skill: `aegis-integrate`, `aegis-learn`, `aegis-protocol`, `aegis-stack-adapters`, `aegis-feature`.
+Project này dùng **aegis** để học backend và nghiệp vụ từ app tham chiếu. CLI: `aegis` (chưa có trên PATH: `node ~/.aegis/kit/bin/aegis.mjs`; chưa cài CLI — vd chỉ cài skill qua plugin: `npx github:nvdhai2003mobiledev/aegis --skills-only` hoặc `curl -fsSL https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.sh | sh`). Skill: `aegis-integrate`, `aegis-learn`, `aegis-protocol`, `aegis-stack-adapters`, `aegis-feature`.
 
 **Luật bắt buộc**
 

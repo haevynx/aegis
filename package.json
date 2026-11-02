@@ -1,6 +1,7 @@
 {
-  "name": "aegis-insurance",
-  "version": "0.2.1",
+  "name": "aegis",
+  "private": true,
+  "version": "0.2.2",
   "description": "Agent Skills + CLI: học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack và mọi state manager.",
   "type": "module",
   "bin": {
@@ -15,8 +16,7 @@
     "test:all": "node scripts/run-tests.mjs test reference/ts",
     "scan-secrets": "node scripts/secret-scan.mjs .",
     "lint-skills": "node scripts/lint-skills.mjs",
-    "vectors": "node scripts/gen-demo-vectors.mjs",
-    "prepublishOnly": "node scripts/secret-scan.mjs . && node scripts/lint-skills.mjs && npm test"
+    "vectors": "node scripts/gen-demo-vectors.mjs"
   },
   "files": [
     "bin",
@@ -55,8 +55,5 @@
   "homepage": "https://github.com/nvdhai2003mobiledev/aegis#readme",
   "bugs": {
     "url": "https://github.com/nvdhai2003mobiledev/aegis/issues"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

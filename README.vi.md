@@ -58,9 +58,8 @@ Chạy trong thư mục gốc của project cần tích hợp. Installer cài sk
 |---|---|---|
 | Claude Code plugin | `/plugin marketplace add nvdhai2003mobiledev/aegis` rồi `/plugin install aegis@aegis` | Skill |
 | Skills CLI (70+ agent) | `npx skills add nvdhai2003mobiledev/aegis` | Skill |
-| npm *(sắp phát hành)* | `npx aegis-insurance` | Skill + CLI |
 | Từ GitHub | `npx github:nvdhai2003mobiledev/aegis` | Skill + CLI |
-| Phiên bản cố định | `curl -fsSL …/install.sh \| AEGIS_VERSION=v0.2.1 sh` | Skill + CLI |
+| Phiên bản cố định | `curl -fsSL …/install.sh \| AEGIS_VERSION=v0.2.2 sh` | Skill + CLI |
 | Bản đang phát triển | `curl -fsSL …/install.sh \| AEGIS_VERSION=main sh` | Skill + CLI |
 
 Tuỳ chọn installer (truyền sau `sh -s --`):

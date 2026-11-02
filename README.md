@@ -58,9 +58,8 @@ Run it from the root of the project you are integrating. The installer adds the 
 | ----------------------- | -------------------------------------------------------------------------------------- | ------------ |
 | Claude Code plugin      | `/plugin marketplace add nvdhai2003mobiledev/aegis` then `/plugin install aegis@aegis` | Skills       |
 | Skills CLI (70+ agents) | `npx skills add nvdhai2003mobiledev/aegis`                                             | Skills       |
-| npm _(coming soon)_     | `npx aegis-insurance`                                                                  | Skills + CLI |
 | From GitHub             | `npx github:nvdhai2003mobiledev/aegis`                                                 | Skills + CLI |
-| Pinned version          | `curl -fsSL …/install.sh \| AEGIS_VERSION=v0.2.1 sh`                                   | Skills + CLI |
+| Pinned version          | `curl -fsSL …/install.sh \| AEGIS_VERSION=v0.2.2 sh`                                   | Skills + CLI |
 | Development build       | `curl -fsSL …/install.sh \| AEGIS_VERSION=main sh`                                     | Skills + CLI |
 
 Installer flags (after `sh -s --`): `--project` (install skills into the project instead of globally), `--skills-only` (don't configure the current directory), `--hooks` (add a secret-scanning pre-commit hook).

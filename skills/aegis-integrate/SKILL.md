@@ -7,7 +7,7 @@ description: Điểm vào của aegis — dựng tầng service/API (ký request
 
 Bạn đang tích hợp backend của một hệ thống bảo hiểm vào project hiện tại. Kiến thức về backend **không có trong đầu bạn và không có trong kit** — nó nằm trong app tham chiếu của người dùng. Bạn học nó bằng công cụ, hỏi người dùng ở các cổng, rồi mới làm.
 
-CLI: `aegis <lệnh>`; không có trên PATH: `node ~/.aegis/kit/bin/aegis.mjs <lệnh>`; chưa cài CLI (chỉ có skill): đề nghị người dùng chạy `npx aegis-insurance --skills-only` hoặc installer `curl -fsSL https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.sh | sh` — không tự chạy khi chưa được đồng ý.
+CLI: `aegis <lệnh>`; không có trên PATH: `node ~/.aegis/kit/bin/aegis.mjs <lệnh>`; chưa cài CLI (chỉ có skill): đề nghị người dùng chạy `npx github:nvdhai2003mobiledev/aegis --skills-only` hoặc installer `curl -fsSL https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.sh | sh` — không tự chạy khi chưa được đồng ý.
 
 ## Luật sắt (đọc lại trước mỗi bước)
 
