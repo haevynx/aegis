@@ -1,0 +1,277 @@
+{
+  "profile": "demo",
+  "secret": "demo-secret",
+  "config": {
+    "baseUrl": "https://api.example.com/",
+    "secret": "demo-secret",
+    "partner": "DEMO_MOBILE",
+    "env": "DEV"
+  },
+  "device": {
+    "id": "device-0001",
+    "bundleId": "com.example.demo",
+    "userAgent": "Demo/1.0"
+  },
+  "now": "2026-01-02T03:04:05",
+  "cases": [
+    {
+      "name": "execute: tiếng Việt có dấu, null, số 0, object lồng",
+      "call": {
+        "route": "execute",
+        "action": "DEMO_CLAIM_LIST",
+        "params": {
+          "ten_khach_hang": "Nguyễn Văn A — “Bảo hiểm” ô tô",
+          "so_tien": 0,
+          "ghi_chu": null,
+          "bo_loc": {
+            "trang": 1,
+            "so_dong": 20,
+            "trang_thai": [
+              "MOI",
+              "DANG_XU_LY"
+            ]
+          }
+        }
+      },
+      "session": {
+        "accessToken": "demo-access",
+        "refreshToken": "demo-refresh",
+        "user": {
+          "username": "nguyenvana",
+          "branch": null
+        }
+      },
+      "expect": {
+        "url": "https://api.example.com/v1/execute",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "xPartner": "DEMO_MOBILE",
+          "xAction": "DEMO_CLAIM_LIST",
+          "xToken": "demo-access",
+          "xEnv": "DEV",
+          "xSign": "5986f88503b78921a99a940cfd799b12151c8fdcbc30f2617faa6bc7eb7af140"
+        },
+        "body": {
+          "meta": {
+            "app": "com.example.demo",
+            "agent": "Demo/1.0",
+            "device": "device-0001",
+            "time": "20260102030405"
+          },
+          "payload": {
+            "channel": "MOBILE",
+            "device_id": "device-0001",
+            "partner": "DEMO_MOBILE",
+            "branch": null,
+            "username": "nguyenvana",
+            "ten_khach_hang": "Nguyễn Văn A — “Bảo hiểm” ô tô",
+            "so_tien": 0,
+            "ghi_chu": null,
+            "bo_loc": {
+              "trang": 1,
+              "so_dong": 20,
+              "trang_thai": [
+                "MOI",
+                "DANG_XU_LY"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "execute: params ghi đè defaults, giữ thứ tự key",
+      "call": {
+        "route": "execute",
+        "action": "DEMO_CLAIM_DETAIL",
+        "params": {
+          "channel": "WEB",
+          "claim_id": 123456789012,
+          "z": 1,
+          "a": 2
+        }
+      },
+      "session": {
+        "accessToken": "demo-access",
+        "refreshToken": "demo-refresh",
+        "user": {
+          "username": "nguyenvana",
+          "branch": null
+        }
+      },
+      "expect": {
+        "url": "https://api.example.com/v1/execute",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "xPartner": "DEMO_MOBILE",
+          "xAction": "DEMO_CLAIM_DETAIL",
+          "xToken": "demo-access",
+          "xEnv": "DEV",
+          "xSign": "88dbcee76d8f517345bb65d6f46fa4a10301297e1be964467279bdb358ab68bc"
+        },
+        "body": {
+          "meta": {
+            "app": "com.example.demo",
+            "agent": "Demo/1.0",
+            "device": "device-0001",
+            "time": "20260102030405"
+          },
+          "payload": {
+            "channel": "WEB",
+            "device_id": "device-0001",
+            "partner": "DEMO_MOBILE",
+            "branch": null,
+            "username": "nguyenvana",
+            "claim_id": 123456789012,
+            "z": 1,
+            "a": 2
+          }
+        }
+      }
+    },
+    {
+      "name": "execute: chưa đăng nhập (không có session) — username bị bỏ, branch = null",
+      "call": {
+        "route": "execute",
+        "action": "DEMO_APP_VERSION",
+        "params": {
+          "platform": "ios"
+        }
+      },
+      "session": null,
+      "expect": {
+        "url": "https://api.example.com/v1/execute",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "xPartner": "DEMO_MOBILE",
+          "xAction": "DEMO_APP_VERSION",
+          "xToken": "",
+          "xEnv": "DEV",
+          "xSign": "303a494017f1610f39e0ab0edf5654093fdeebec48f9987c632e526157879a00"
+        },
+        "body": {
+          "meta": {
+            "app": "com.example.demo",
+            "agent": "Demo/1.0",
+            "device": "device-0001",
+            "time": "20260102030405"
+          },
+          "payload": {
+            "channel": "MOBILE",
+            "device_id": "device-0001",
+            "partner": "DEMO_MOBILE",
+            "branch": null,
+            "platform": "ios"
+          }
+        }
+      }
+    },
+    {
+      "name": "execute: branch rỗng → null (|| null)",
+      "call": {
+        "route": "execute",
+        "action": "DEMO_CLAIM_LIST",
+        "params": {}
+      },
+      "session": {
+        "accessToken": "demo-access",
+        "refreshToken": "demo-refresh",
+        "user": {
+          "username": "nguyenvana",
+          "branch": ""
+        }
+      },
+      "expect": {
+        "url": "https://api.example.com/v1/execute",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "xPartner": "DEMO_MOBILE",
+          "xAction": "DEMO_CLAIM_LIST",
+          "xToken": "demo-access",
+          "xEnv": "DEV",
+          "xSign": "c0571776aec228e7ca34568fa9f9cec367b5fd5c5fbb4a1d93fb785068598bf8"
+        },
+        "body": {
+          "meta": {
+            "app": "com.example.demo",
+            "agent": "Demo/1.0",
+            "device": "device-0001",
+            "time": "20260102030405"
+          },
+          "payload": {
+            "channel": "MOBILE",
+            "device_id": "device-0001",
+            "partner": "DEMO_MOBILE",
+            "branch": null,
+            "username": "nguyenvana"
+          }
+        }
+      }
+    },
+    {
+      "name": "login: JWS HS256, không gộp defaults",
+      "call": {
+        "route": "login",
+        "params": {
+          "username": "nguyenvana",
+          "password": "demo-password",
+          "device_id": "device-0001"
+        }
+      },
+      "session": null,
+      "expect": {
+        "url": "https://api.example.com/v1/login",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "xPartner": "DEMO_MOBILE",
+          "xAction": "DEMO_LOGIN",
+          "xSign": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsInBhcnRuZXIiOiJERU1PX01PQklMRSJ9.eyJ1c2VybmFtZSI6Im5ndXllbnZhbmEiLCJwYXNzd29yZCI6ImRlbW8tcGFzc3dvcmQiLCJkZXZpY2VfaWQiOiJkZXZpY2UtMDAwMSJ9.wCFWiDeV_r1UoiuV4p2RrvEKty-TxwEarpP934ZZA0g"
+        },
+        "body": {
+          "meta": {
+            "app": "com.example.demo",
+            "agent": "Demo/1.0",
+            "device": "device-0001",
+            "time": "20260102030405"
+          },
+          "payload": {
+            "username": "nguyenvana",
+            "password": "demo-password",
+            "device_id": "device-0001"
+          }
+        }
+      }
+    },
+    {
+      "name": "refresh: body cố định, header rút gọn",
+      "call": {
+        "route": "refresh"
+      },
+      "session": {
+        "accessToken": "demo-access",
+        "refreshToken": "demo-refresh",
+        "user": {
+          "username": "nguyenvana",
+          "branch": null
+        }
+      },
+      "expect": {
+        "url": "https://api.example.com/v1/refresh",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "xPartner": "DEMO_MOBILE"
+        },
+        "body": {
+          "access": "demo-access",
+          "refresh": "demo-refresh"
+        }
+      }
+    }
+  ]
+}

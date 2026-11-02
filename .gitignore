@@ -1,0 +1,8 @@
+node_modules/
+.env
+.env.*
+!.env.example
+.DS_Store
+.dart_tool/
+reference/dart/pubspec.lock
+.aegis-local/

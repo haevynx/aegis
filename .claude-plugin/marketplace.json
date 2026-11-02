@@ -1,0 +1,12 @@
+{
+  "name": "aegis",
+  "owner": {"name": "aegis contributors"},
+  "plugins": [
+    {
+      "name": "aegis",
+      "source": "./",
+      "description": "Học backend & nghiệp vụ bảo hiểm từ app tham chiếu, tích hợp vào mọi stack và mọi state manager.",
+      "version": "0.1.0"
+    }
+  ]
+}

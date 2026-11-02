@@ -1,0 +1,34 @@
+name: ci
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  node:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 22, 24]
+    env:
+      TZ: UTC
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: git config --global user.email ci@example.com && git config --global user.name ci
+      - name: Quét secret (repo public — không được có dữ liệu thật)
+        run: node scripts/secret-scan.mjs .
+      - run: node scripts/lint-skills.mjs
+      - run: npm test
+      - name: Reference TS + vector (cần type stripping)
+        if: matrix.node != 18
+        run: npm run test:ts && node bin/aegis.mjs vectors --demo
+  dart:
+    runs-on: ubuntu-latest
+    env:
+      TZ: UTC
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - run: dart pub get && dart test
+        working-directory: reference/dart

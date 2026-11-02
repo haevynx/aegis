@@ -1,0 +1,59 @@
+{
+  "name": "demo",
+  "description": "Backend GIẢ dùng để minh hoạ và test. Mọi tên, mã, URL đều bịa.",
+  "transport": {"method": "POST", "contentType": "application/json", "timeoutMs": 30000},
+  "envelope": {
+    "dataKey": "payload",
+    "metaKey": "meta",
+    "meta": {
+      "app": "{device.bundleId}",
+      "agent": "{device.userAgent}",
+      "device": "{device.id}",
+      "time": "{now:yyyyMMddHHmmss}"
+    },
+    "defaults": {
+      "channel": "MOBILE",
+      "device_id": "{device.id}",
+      "partner": "{config.partner}",
+      "branch": "{session.user.branch || null}",
+      "username": "{session.user.username?}"
+    }
+  },
+  "headers": {
+    "Content-Type": "application/json",
+    "xPartner": "{config.partner}",
+    "xAction": "{action}",
+    "xToken": "{session.accessToken}",
+    "xEnv": "{config.env}",
+    "xSign": "{signature}"
+  },
+  "signing": {"recipe": "hash-b64url-dot-secret", "over": "data", "alg": "sha256", "encoding": "hex"},
+  "routes": {
+    "execute": {"path": "v1/execute"},
+    "login": {
+      "path": "v1/login",
+      "action": "DEMO_LOGIN",
+      "defaults": false,
+      "signing": {"recipe": "jws-hs256", "over": "data", "jwsHeader": {"alg": "HS256", "typ": "JWT", "partner": "DEMO_MOBILE"}},
+      "headers": {"Content-Type": "application/json", "xPartner": "{config.partner}", "xAction": "{action}", "xSign": "{signature}"}
+    },
+    "refresh": {
+      "path": "v1/refresh",
+      "headers": {"Content-Type": "application/json", "xPartner": "{config.partner}"},
+      "body": {"access": "{session.accessToken}", "refresh": "{session.refreshToken}"}
+    }
+  },
+  "response": {"statusPath": "status.code", "okValues": ["OK"], "messagePath": "status.message", "codePath": "status.error", "dataPath": "data"},
+  "session": {
+    "fromLogin": {"accessToken": "data.token.access", "refreshToken": "data.token.refresh", "user": "data.user"},
+    "fromRefresh": {"accessToken": "data.access", "refreshToken": "data.refresh"},
+    "tokenExpired": {"messages": ["Token has expired."], "codes": ["E_TOKEN_EXPIRED"]},
+    "sessionExpired": {"messages": ["Session has expired."], "codes": ["E_SESSION_EXPIRED"]},
+    "authInvalid": {"messages": ["Signed in on another device."], "codes": ["E_AUTH"]},
+    "relogin": "stored-credentials"
+  },
+  "env": {
+    "environments": ["DEV", "UAT", "PROD"],
+    "vars": {"baseUrl": "AEGIS_BASE_URL", "secret": "AEGIS_SECRET_KEY", "partner": "AEGIS_PARTNER_CODE", "env": "AEGIS_ENV"}
+  }
+}
