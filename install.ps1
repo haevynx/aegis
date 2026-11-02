@@ -2,12 +2,12 @@
 #
 #   irm https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.ps1 | iex
 #
-# Biến môi trường: AEGIS_VERSION (mặc định main), AEGIS_HOME (mặc định ~\.aegis), AEGIS_SOURCE_DIR (cài từ thư mục local).
+# Biến môi trường: AEGIS_VERSION (mặc định: bản release mới nhất; hoặc tag / main), AEGIS_HOME (mặc định ~\.aegis), AEGIS_SOURCE_DIR (cài từ thư mục local).
 # Không cần quyền admin. Không sửa PATH hệ thống.
 $ErrorActionPreference = 'Stop'
 
 $Repo = 'nvdhai2003mobiledev/aegis'
-$Ref = if ($env:AEGIS_VERSION) { $env:AEGIS_VERSION } else { 'main' }
+$Ref = if ($env:AEGIS_VERSION) { $env:AEGIS_VERSION } else { 'latest' }
 if (-not $env:AEGIS_HOME) { $env:AEGIS_HOME = Join-Path $HOME '.aegis' }
 
 function Fail($msg) { Write-Host "aegis: $msg" -ForegroundColor Red; exit 1 }
@@ -23,6 +23,10 @@ try {
     $src = $env:AEGIS_SOURCE_DIR
     Write-Host "aegis: cài từ thư mục local: $src"
   } else {
+    if ($Ref -eq 'latest') {
+      try { $Ref = (Invoke-RestMethod -UseBasicParsing -Uri "https://api.github.com/repos/$Repo/releases/latest").tag_name } catch { $Ref = $null }
+      if (-not $Ref) { $Ref = 'main'; Write-Host 'aegis: không lấy được bản release mới nhất (giới hạn API?) — dùng nhánh main' }
+    }
     $url = "https://codeload.github.com/$Repo/zip/$Ref"
     Write-Host "aegis: tải $Repo@$Ref"
     $zip = Join-Path $tmp 'aegis.zip'

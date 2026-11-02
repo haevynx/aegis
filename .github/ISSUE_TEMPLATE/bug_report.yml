@@ -1,0 +1,56 @@
+name: 🐛 Báo lỗi / Bug report
+description: aegis chạy sai, scanner bỏ sót/bắt nhầm, vector không khớp…
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cảm ơn bạn! **Đừng dán secret, URL server, mã action thật hay dữ liệu khách hàng.** Thay bằng `<SECRET_KEY>`, `https://api.example.com`, `DEMO_*`.
+        Thanks! **Never paste secrets, real server URLs, real action codes or customer data.**
+  - type: checkboxes
+    id: no-real-data
+    attributes:
+      label: Xác nhận / Confirmation
+      options:
+        - label: Issue này KHÔNG chứa secret hay dữ liệu thật của bất kỳ công ty nào / contains no secrets or real company data
+          required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: Chuyện gì xảy ra? / What happened?
+      description: Lệnh đã chạy, kết quả thực tế, kết quả mong đợi.
+      placeholder: |
+        aegis scan --ref app-cu
+        → …
+        Mong đợi: …
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Cách tái hiện / Reproduction
+      description: Tốt nhất là một đoạn code GIẢ tối thiểu (vd thêm vào examples/demo-app) tái hiện lỗi.
+  - type: input
+    id: version
+    attributes:
+      label: Phiên bản / Version
+      description: "`aegis --version`"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Phần nào? / Area
+      options: [CLI / installer, scanner (scan / feature), redact / secret-scan, profile / vectors, client TS, client Dart, skills / tài liệu, khác / other]
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Môi trường / Environment
+      placeholder: macOS 15 · Node 22.18 · Claude Code / Codex
+  - type: input
+    id: stack
+    attributes:
+      label: Stack của app tham chiếu / app đích
+      placeholder: React Native + Redux → Flutter + Riverpod

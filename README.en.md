@@ -5,7 +5,7 @@
 <h3>Learn an insurance backend and its business features from a reference app — then integrate them into any stack and any state manager.</h3>
 
 [![CI](https://github.com/nvdhai2003mobiledev/aegis/actions/workflows/ci.yml/badge.svg)](https://github.com/nvdhai2003mobiledev/aegis/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/aegis-insurance?color=2563eb&label=npm)](https://www.npmjs.com/package/aegis-insurance)
+[![Release](https://img.shields.io/github/v/release/nvdhai2003mobiledev/aegis?color=2563eb&label=release)](https://github.com/nvdhai2003mobiledev/aegis/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-14b8a6)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A518-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Zero dependencies](https://img.shields.io/badge/dependencies-0-0ea5e9)](package.json)
@@ -49,13 +49,7 @@ curl -fsSL https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/inst
 irm https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.ps1 | iex
 ```
 
-**npm**
-
-```bash
-npx aegis-insurance
-```
-
-Run it from the root of the project you are integrating. The installer adds the skills for **Claude Code** (`~/.claude/skills`) and **Codex** (`~/.agents/skills`), installs the `aegis` CLI into `~/.aegis/bin`, and configures the current project (a rules block in `CLAUDE.md`/`AGENTS.md`, `.aegis/`, `.env.example`, `.gitignore`). No sudo, no shell-profile edits, no dependencies.
+Run it from the root of the project you are integrating. The installer adds the skills for **Claude Code** (`~/.claude/skills`) and **Codex** (`~/.agents/skills`), installs the `aegis` CLI into `~/.aegis/bin`, and configures the current project (a rules block in `CLAUDE.md`/`AGENTS.md`, `.aegis/`, `.env.example`, `.gitignore`). No sudo, no shell-profile edits, no dependencies. Installs the **latest release** by default.
 
 <details>
 <summary><b>Other ways to install</b></summary>
@@ -64,10 +58,12 @@ Run it from the root of the project you are integrating. The installer adds the 
 | ----------------------- | -------------------------------------------------------------------------------------- | ------------ |
 | Claude Code plugin      | `/plugin marketplace add nvdhai2003mobiledev/aegis` then `/plugin install aegis@aegis` | Skills       |
 | Skills CLI (70+ agents) | `npx skills add nvdhai2003mobiledev/aegis`                                             | Skills       |
+| npm _(coming soon)_     | `npx aegis-insurance`                                                                  | Skills + CLI |
 | From GitHub             | `npx github:nvdhai2003mobiledev/aegis`                                                 | Skills + CLI |
-| Pinned version          | `curl -fsSL …/install.sh \| AEGIS_VERSION=v0.2.0 sh`                                   | Skills + CLI |
+| Pinned version          | `curl -fsSL …/install.sh \| AEGIS_VERSION=v0.2.1 sh`                                   | Skills + CLI |
+| Development build       | `curl -fsSL …/install.sh \| AEGIS_VERSION=main sh`                                     | Skills + CLI |
 
-Installer flags (after `sh -s --` or `npx aegis-insurance`): `--project` (install skills into the project instead of globally), `--skills-only` (don't configure the current directory), `--hooks` (add a secret-scanning pre-commit hook).
+Installer flags (after `sh -s --`): `--project` (install skills into the project instead of globally), `--skills-only` (don't configure the current directory), `--hooks` (add a secret-scanning pre-commit hook).
 
 Update: `aegis update` · Remove: `aegis uninstall` (your `.aegis/` is kept).
 
@@ -184,7 +180,7 @@ The protocol is a [profile](spec/profile-schema.md): envelope, headers, signing 
 
 ## 🤝 Contributing
 
-Adapters for new stacks/state managers, new signing recipes and scanner heuristics are very welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). One non-negotiable rule: **no real company data in this repo.**
+Adapters for new stacks/state managers, new signing recipes and scanner heuristics are very welcome — see [CONTRIBUTING.md](CONTRIBUTING.md), the [Code of Conduct](CODE_OF_CONDUCT.md) and the [CHANGELOG](CHANGELOG.md). Questions → [Discussions](https://github.com/nvdhai2003mobiledev/aegis/discussions). One non-negotiable rule: **no real company data in this repo.**
 
 ## 📄 License
 
