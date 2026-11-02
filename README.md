@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/banner.svg" alt="aegis" width="100%">
+<h1>aegis</h1>
 
-<h3>Học backend & nghiệp vụ bảo hiểm từ app tham chiếu — tích hợp vào mọi stack, mọi state manager.</h3>
+<h3>Learn an insurance backend and its business features from a reference app — then integrate them into any stack and any state manager.</h3>
 
 [![CI](https://github.com/nvdhai2003mobiledev/aegis/actions/workflows/ci.yml/badge.svg)](https://github.com/nvdhai2003mobiledev/aegis/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/nvdhai2003mobiledev/aegis?color=2563eb&label=release)](https://github.com/nvdhai2003mobiledev/aegis/releases)
@@ -11,31 +11,31 @@
 [![Zero dependencies](https://img.shields.io/badge/dependencies-0-0ea5e9)](package.json)
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor-7c3aed)](https://agentskills.io)
 
-**Tiếng Việt** · [English](README.en.md)
+**English** · [Tiếng Việt](README.vi.md)
 
-[Cài đặt](#-cài-đặt) · [Bắt đầu nhanh](#-bắt-đầu-nhanh) · [Cách hoạt động](#-cách-hoạt-động) · [Hỗ trợ](#-stack--state-manager-được-hỗ-trợ) · [Lệnh](#-lệnh) · [Bảo mật](#-bảo-mật) · [FAQ](#-faq)
+[Install](#-install) · [Quick start](#-quick-start) · [How it works](#-how-it-works) · [Support](#-supported-stacks--state-managers) · [Commands](#-commands) · [Security](#-security) · [FAQ](#-faq)
 
 </div>
 
 ---
 
-**aegis** là bộ **Agent Skills + CLI** cho Claude Code, Codex, Cursor và mọi agent hỗ trợ [Agent Skills](https://agentskills.io). Bạn chỉ cho agent một app bảo hiểm cũ; agent **học** cách backend hoạt động và nghiệp vụ từng chức năng từ chính source code đó, **hỏi** bạn ở những điểm cần con người quyết, rồi **làm**: dựng tầng service và các màn hình trên stack mới, kèm kiểm chứng chữ ký request khớp từng byte với app cũ.
+**aegis** is an **Agent Skills + CLI** kit for Claude Code, Codex, Cursor and every [Agent Skills](https://agentskills.io) host. Point your agent at an existing insurance app: it **learns** how the backend works and what each feature does from that source code, **asks** you at the points where a human must decide, then **does** the work — building the service layer and screens on a new stack, with request signatures verified byte-for-byte against the old app.
 
-Kit **không chứa dữ liệu của công ty nào**. Mọi kiến thức thật được học lúc chạy và chỉ nằm trong project private của bạn.
+The kit **ships no company data**. All real knowledge is learned at run time and lives only in your private project.
 
-## ✨ Vì sao cần aegis
+## ✨ Why aegis
 
-Làm app bảo hiểm mới thường bắt đầu bằng *clone app cũ*. Nhanh — nhưng app mới bị khoá vào framework, state manager, HTTP client và cách tổ chức của app gốc. Muốn đổi công nghệ là phải mò lại từ đầu: request được ký thế nào, phiên hết hạn xử lý ra sao, hàng trăm mã action nghĩa là gì, quy tắc nghiệp vụ nằm rải rác ở màn hình nào.
+New insurance apps usually start as a _clone of an old one_. Fast — but the new app inherits the old framework, state manager, HTTP client and structure. Switching technology means rediscovering how requests are signed, how expired sessions are handled, what hundreds of action codes mean, and which business rules hide in which screens.
 
-| Clone app cũ | Với aegis |
-|---|---|
-| Khoá vào công nghệ cũ | Chọn stack & state manager tuỳ ý |
-| Kiến thức nằm ngầm trong code | Kiến thức tường minh, có nguồn `file:line` |
-| Agent đoán dựa trên "thường thì…" | Agent bị cấm đoán — không có nguồn thì hỏi |
-| Lệch chữ ký → lỗi khó hiểu trên server | Test vector khớp từng byte với thuật toán cũ |
-| Secret theo code đi khắp nơi | Secret chỉ ở `.env`, scanner che khi đọc |
+| Cloning the old app                     | With aegis                                         |
+| --------------------------------------- | -------------------------------------------------- |
+| Locked into the old tech                | Any stack, any state manager                       |
+| Knowledge implicit in code              | Explicit knowledge with `file:line` sources        |
+| Agent guesses "usually…"                | Agent may not guess — no source, it asks           |
+| Signature drift → cryptic server errors | Test vectors match the old algorithm byte-for-byte |
+| Secrets travel with the code            | Secrets only in `.env`, redacted on read           |
 
-## 🚀 Cài đặt
+## 🚀 Install
 
 **macOS / Linux**
 
@@ -49,168 +49,139 @@ curl -fsSL https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/inst
 irm https://raw.githubusercontent.com/nvdhai2003mobiledev/aegis/main/install.ps1 | iex
 ```
 
-Chạy trong thư mục gốc của project cần tích hợp. Installer cài skill cho **Claude Code** (`~/.claude/skills`) và **Codex** (`~/.agents/skills`), cài CLI `aegis` vào `~/.aegis/bin`, rồi cấu hình project hiện tại (khối luật trong `CLAUDE.md`/`AGENTS.md`, `.aegis/`, `.env.example`, `.gitignore`). Không cần sudo, không sửa file cấu hình shell, không cài dependency nào. Mặc định cài **bản release mới nhất**.
+Run it from the root of the project you are integrating. The installer adds the skills for **Claude Code** (`~/.claude/skills`) and **Codex** (`~/.agents/skills`), installs the `aegis` CLI into `~/.aegis/bin`, and configures the current project (a rules block in `CLAUDE.md`/`AGENTS.md`, `.aegis/`, `.env.example`, `.gitignore`). No sudo, no shell-profile edits, no dependencies. Installs the **latest release** by default.
 
 <details>
-<summary><b>Cách cài khác</b></summary>
+<summary><b>Other ways to install</b></summary>
 
-| Kênh | Lệnh | Cài gì |
-|---|---|---|
-| Claude Code plugin | `/plugin marketplace add nvdhai2003mobiledev/aegis` rồi `/plugin install aegis@aegis` | Skill |
-| Skills CLI (70+ agent) | `npx skills add nvdhai2003mobiledev/aegis` | Skill |
-| npm *(sắp phát hành)* | `npx aegis-insurance` | Skill + CLI |
-| Từ GitHub | `npx github:nvdhai2003mobiledev/aegis` | Skill + CLI |
-| Phiên bản cố định | `curl -fsSL …/install.sh \| AEGIS_VERSION=v0.2.1 sh` | Skill + CLI |
-| Bản đang phát triển | `curl -fsSL …/install.sh \| AEGIS_VERSION=main sh` | Skill + CLI |
+| Channel                 | Command                                                                                | Installs     |
+| ----------------------- | -------------------------------------------------------------------------------------- | ------------ |
+| Claude Code plugin      | `/plugin marketplace add nvdhai2003mobiledev/aegis` then `/plugin install aegis@aegis` | Skills       |
+| Skills CLI (70+ agents) | `npx skills add nvdhai2003mobiledev/aegis`                                             | Skills       |
+| npm _(coming soon)_     | `npx aegis-insurance`                                                                  | Skills + CLI |
+| From GitHub             | `npx github:nvdhai2003mobiledev/aegis`                                                 | Skills + CLI |
+| Pinned version          | `curl -fsSL …/install.sh \| AEGIS_VERSION=v0.2.1 sh`                                   | Skills + CLI |
+| Development build       | `curl -fsSL …/install.sh \| AEGIS_VERSION=main sh`                                     | Skills + CLI |
 
-Tuỳ chọn installer (truyền sau `sh -s --`):
+Installer flags (after `sh -s --`): `--project` (install skills into the project instead of globally), `--skills-only` (don't configure the current directory), `--hooks` (add a secret-scanning pre-commit hook).
 
-| Cờ | Ý nghĩa |
-|---|---|
-| `--project` | cài skill vào project (`.claude/skills`, `.agents/skills`) thay vì global |
-| `--skills-only` | chỉ cài skill + CLI, không cấu hình thư mục hiện tại |
-| `--hooks` | thêm pre-commit quét secret vào project |
-
-Cập nhật: `aegis update` · Gỡ: `aegis uninstall` (giữ nguyên `.aegis/` của bạn).
+Update: `aegis update` · Remove: `aegis uninstall` (your `.aegis/` is kept).
 
 </details>
 
-> Khởi động lại phiên Claude Code / Codex sau khi cài để nạp skill.
+> Restart your Claude Code / Codex session after installing so the skills load.
 
-## ⚡ Bắt đầu nhanh
+## ⚡ Quick start
 
 ```bash
-aegis ref add ~/code/app-bao-hiem-cu     # hoặc git-url — clone chỉ đọc
-aegis scan                               # học: môi trường, endpoint, action, tầng ký, chức năng
-aegis doctor                             # đang ở mức nào, bước tiếp theo là gì
+aegis ref add ~/code/old-insurance-app   # or a git URL — read-only clone
+aegis scan                               # learn: environments, endpoints, actions, signing layer, features
+aegis doctor                             # readiness level and the next step
 ```
 
-```text
-✔ app-bao-hiem-cu @ 3f2a9c1e0b7d → .aegis/knowledge/app-bao-hiem-cu
-  stack: react-native · state: redux-toolkit · http: axios
-  môi trường 3 · endpoint 96 · action 412 · message 58 · route 240 · chức năng 180
-  độ tin cậy: environments=high endpoints=high actions=high protocol=high features=high
-```
+Then tell your agent:
 
-Rồi nói với agent:
-
-> **"Tích hợp backend bảo hiểm vào project này."**
+> **"Integrate the insurance backend into this project."**
 >
-> **"Làm chức năng giám định ô tô như app cũ."**
+> **"Build the car-inspection feature like the old app."**
 
-Agent sẽ viết profile giao thức và spec chức năng (mỗi dòng có nguồn), **dừng lại cho bạn duyệt**, rồi mới sinh code và kiểm chứng.
+The agent writes a protocol profile and a feature spec (every line sourced), **stops for your approval**, then generates and verifies code.
 
-## 🧭 Cách hoạt động
+## 🧭 How it works
 
 ```mermaid
 flowchart LR
-  REF[("App tham chiếu<br/>(source cũ)")] -->|aegis scan<br/>che secret| K[".aegis/knowledge<br/>env · endpoint · action<br/>tầng ký · chức năng"]
+  REF[("Reference app<br/>(old source)")] -->|aegis scan<br/>redacted| K[".aegis/knowledge<br/>env · endpoints · actions<br/>signing · features"]
   K -->|aegis profile learn| P["profile.json<br/>+ protocol.md"]
-  K -->|aegis feature| S["spec chức năng<br/>màn · trường · API · quy tắc"]
-  P --> G1{{"Bạn duyệt"}}
-  S --> G2{{"Bạn duyệt"}}
-  G1 --> C["Client theo stack<br/>+ state manager"]
-  G2 --> F["Màn hình + quy tắc<br/>+ test"]
-  C --> V["aegis vectors<br/>khớp từng byte"]
-  ENV[".env<br/>(chỉ bạn điền)"] -.-> C
+  K -->|aegis feature| S["feature spec<br/>screens · fields · API · rules"]
+  P --> G1{{"You approve"}}
+  S --> G2{{"You approve"}}
+  G1 --> C["Client for your stack<br/>+ state manager"]
+  G2 --> F["Screens + rules<br/>+ tests"]
+  C --> V["aegis vectors<br/>byte-for-byte"]
+  ENV[".env<br/>(you fill it)"] -.-> C
 ```
 
-| Pha | Agent làm | Công cụ |
-|---|---|---|
-| **Học** | Đọc app tham chiếu: cấu hình môi trường (đã che secret), endpoint, mã action, tầng HTTP/ký/phiên, cây chức năng. Không trả lời từ trí nhớ. | `scan` · `profile learn` · `feature` · `diff` |
-| **Hỏi** | Dừng ở các cổng: duyệt profile, chọn app chuẩn khi các app khác nhau, bạn tự điền secret, duyệt spec chức năng, trước khi gọi server thật. | skill `aegis-integrate` · `aegis-feature` |
-| **Làm** | Sinh client chạy theo profile, nối store, test vector chữ ký, so request với app cũ, smoke test khi được phép. | `vectors` · `profile check` · `doctor` |
+| Phase     | The agent                                                                                                                                                  | Tools                                         |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **Learn** | Reads the reference app: environments (secrets redacted), endpoints, action codes, HTTP/signing/session layer, feature tree. Never answers from memory.    | `scan` · `profile learn` · `feature` · `diff` |
+| **Ask**   | Stops at gates: profile approval, which app is canonical when apps differ, secrets you type yourself, feature-spec approval, before calling a real server. | `aegis-integrate` · `aegis-feature` skills    |
+| **Do**    | Generates a profile-driven client, wires the store, runs signature vectors, compares requests with the old app, smoke-tests when allowed.                  | `vectors` · `profile check` · `doctor`        |
 
-Không có source app cũ trên máy? aegis tự lùi dần: clone từ git (chỉ đọc) → `aegis import` từ một project đã học → **chế độ chỉ giao thức** (tài liệu API / hỏi đáp, mã action để `<ACTION:KEY>` và `aegis doctor` liệt kê mã còn thiếu).
+No reference source on your machine? aegis falls back: read-only git clone → `aegis import` from a project that already learned → **protocol-only mode** (API docs / Q&A, action codes as `<ACTION:KEY>` placeholders that `aegis doctor` tracks).
 
-## 🧩 Thành phần
+## 🧩 What's inside
 
-| Skill | Dùng khi |
-|---|---|
-| **`aegis-integrate`** | Điểm vào — "tích hợp backend", "chuyển app sang stack mới" |
-| **`aegis-learn`** | Đọc source app cũ, viết profile, sinh vector, thuật ngữ bảo hiểm |
-| **`aegis-protocol`** | Lõi client: envelope, công thức ký, phân loại response, chính sách phiên, upload, SSO, thanh toán, push |
-| **`aegis-stack-adapters`** | Dịch lõi sang từng stack và nối vào từng state manager |
-| **`aegis-feature`** | Trích chức năng → spec có nguồn → duyệt → code + test |
+| Skill                      | Use it for                                                                                                   |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **`aegis-integrate`**      | Entry point — "integrate the backend", "move this app to a new stack"                                        |
+| **`aegis-learn`**          | Reading the old source, writing the profile, generating vectors, insurance glossary                          |
+| **`aegis-protocol`**       | Client core: envelope, signing recipes, response classification, session policy, upload, SSO, payments, push |
+| **`aegis-stack-adapters`** | Porting the core to each stack and wiring each state manager                                                 |
+| **`aegis-feature`**        | Extract a feature → sourced spec → approval → code + tests                                                   |
 
-Kèm theo: **client mẫu chạy theo profile** bằng [TypeScript](reference/ts) và [Dart](reference/dart) dùng chung một bộ [vector](profiles/demo/vectors.json); đặc tả [profile](spec/profile-schema.md), [công thức ký](spec/signing-recipes.md), [định dạng `.aegis/`](spec/knowledge-format.md).
+Plus **profile-driven reference clients** in [TypeScript](reference/ts) and [Dart](reference/dart) sharing one [vector set](profiles/demo/vectors.json), and specs for the [profile](spec/profile-schema.md), [signing recipes](spec/signing-recipes.md) and [`.aegis/` format](spec/knowledge-format.md).
 
-## 📱 Stack & state manager được hỗ trợ
+## 📱 Supported stacks & state managers
 
-| Stack | | State manager | |
-|---|---|---|---|
-| React Native | ✅ | Redux Toolkit | ✅ |
-| Expo | ✅ | RTK Query | ✅ |
-| React / Next.js | ✅ | Zustand | ✅ |
-| Vue / Nuxt | ✅ | TanStack Query | ✅ |
-| Flutter | ✅ client Dart | Jotai | ✅ |
-| Android (Kotlin) | ✅ hướng dẫn | MobX | ✅ |
-| iOS (Swift) | ✅ hướng dẫn | Pinia | ✅ |
-| | | Riverpod | ✅ |
-| | | Bloc / Cubit | ✅ |
+| Stack            |                | State manager  |     |
+| ---------------- | -------------- | -------------- | --- |
+| React Native     | ✅             | Redux Toolkit  | ✅  |
+| Expo             | ✅             | RTK Query      | ✅  |
+| React / Next.js  | ✅             | Zustand        | ✅  |
+| Vue / Nuxt       | ✅             | TanStack Query | ✅  |
+| Flutter          | ✅ Dart client | Jotai          | ✅  |
+| Android (Kotlin) | ✅ guide       | MobX           | ✅  |
+| iOS (Swift)      | ✅ guide       | Pinia          | ✅  |
+|                  |                | Riverpod       | ✅  |
+|                  |                | Bloc / Cubit   | ✅  |
 
-Mỗi hướng dẫn nêu: nơi đặt file, HTTP transport, thư viện crypto, cách serialize JSON giữ đúng byte, secure storage cho phiên, device id, biến môi trường, và cách nối `SessionStore` + hooks.
+## 🛠 Commands
 
-## 🛠 Lệnh
+| Learn                           | Verify                      | Manage                                |
+| ------------------------------- | --------------------------- | ------------------------------------- |
+| `aegis ref add <path\|git-url>` | `aegis vectors [--demo]`    | `aegis install [--project] [--hooks]` |
+| `aegis scan [--ref]`            | `aegis profile check`       | `aegis update` · `aegis uninstall`    |
+| `aegis profile learn\|show`     | `aegis doctor [--json]`     | `aegis import <path\|git-url>`        |
+| `aegis feature <name>`          | `aegis scan-secrets [path]` | `aegis action add\|list [--missing]`  |
+| `aegis diff --ref a --ref b`    |                             | `aegis doc add <file>`                |
 
-| Học | Kiểm chứng | Quản lý |
-|---|---|---|
-| `aegis ref add <path\|git-url>` | `aegis vectors [--demo]` | `aegis install [--project] [--hooks]` |
-| `aegis scan [--ref]` | `aegis profile check` | `aegis update` · `aegis uninstall` |
-| `aegis profile learn\|show` | `aegis doctor [--json]` | `aegis import <path\|git-url>` |
-| `aegis feature <tên>` | `aegis scan-secrets [path]` | `aegis action add\|list [--missing]` |
-| `aegis diff --ref a --ref b` | | `aegis doc add <file>` |
+## 🔒 Security
 
-`aegis --help` để xem đầy đủ.
+- **The kit contains no real data** — methods, generic signing recipes and a fictional `demo` profile only. CI enforces it with [`secret-scan`](scripts/secret-scan.mjs); maintainers add a local denylist kept outside the repo.
+- **Redaction on read** — secrets by field name, long hex, JWTs, API keys, private keys, every URL — plus a final guard that refuses to write `.aegis/` if anything secret-looking remains.
+- **Secrets only in `.env`** — the agent never copies secrets from the old app or writes them to code, `.aegis/`, logs or replies. `aegis doctor` flags a git-tracked `.env`.
+- **No machine-local data in committed files** (local paths live in the gitignored `.aegis/local.json`).
 
-## 🔒 Bảo mật
-
-aegis được thiết kế để repo này **public** mà không lộ gì, và để project của bạn không làm lộ secret.
-
-- **Kit không chứa dữ liệu thật.** Chỉ phương pháp, công thức ký tổng quát và profile `demo` bịa. CI chặn bằng [`secret-scan`](scripts/secret-scan.mjs); người bảo trì dùng thêm denylist local ngoài repo.
-- **Che secret ngay lúc đọc.** Secret theo tên trường, hex dài, JWT, API key, private key, mọi URL. Có chốt chặn cuối: từ chối ghi `.aegis/` nếu còn chuỗi giống secret.
-- **Secret chỉ ở `.env`.** Agent không tự lấy secret từ app cũ, không ghi vào code, `.aegis/`, log hay câu trả lời. `aegis doctor` báo động nếu `.env` bị git theo dõi.
-- **Không có dữ liệu máy cá nhân** trong file được commit (đường dẫn local nằm trong `.aegis/local.json`, đã gitignore).
-
-Chi tiết và cách báo lỗi bảo mật: [SECURITY.md](SECURITY.md).
+See [SECURITY.md](SECURITY.md).
 
 ## ❓ FAQ
 
 <details>
-<summary><b>aegis có gửi code của tôi đi đâu không?</b></summary>
+<summary><b>Does aegis send my code anywhere?</b></summary>
 
-Không. CLI chạy hoàn toàn local, không có dependency, không gọi mạng — trừ khi bạn dùng `ref add <git-url>` / `import <git-url>` (clone bằng quyền git của chính bạn) hoặc `update`.
+No. The CLI is local-only with zero dependencies and no network calls — except `ref add <git-url>` / `import <git-url>` (cloned with your own git credentials) and `update`.
+
 </details>
 
 <details>
-<summary><b>App cũ của tôi không dùng React Native / axios / Redux thì sao?</b></summary>
+<summary><b>My old app isn't React Native / axios / Redux.</b></summary>
 
-Scanner không giả định bố cục: nó tìm theo tín hiệu (HTTP client, hàm ký, bảng hằng số, khai báo route) trên JS/TS, Dart, Kotlin, Swift, Vue. Bố cục lạ → độ tin cậy thấp, kèm danh sách file để agent đọc tay theo `aegis-learn`.
+The scanner looks for signals (HTTP clients, signing functions, constant tables, route declarations) across JS/TS, Dart, Kotlin, Swift and Vue. Unknown layouts get low confidence plus a list of files for the agent to read by hand.
+
 </details>
 
 <details>
-<summary><b>Backend của công ty tôi ký request kiểu khác?</b></summary>
+<summary><b>Our backend signs requests differently.</b></summary>
 
-Giao thức được mô tả bằng một [profile](spec/profile-schema.md): envelope, header, công thức ký (`hash-b64url-dot-secret`, `jws-hs256`, `hmac-sha256`, `kv-string-hash`…), phân loại response, chính sách phiên. Không có công thức phù hợp → agent ghi vào câu hỏi mở thay vì ép; bạn có thể [đóng góp công thức mới](CONTRIBUTING.md).
+The protocol is a [profile](spec/profile-schema.md): envelope, headers, signing recipe, response classification, session policy. If no recipe fits, the agent records an open question instead of forcing one — and you can [contribute a recipe](CONTRIBUTING.md).
+
 </details>
 
-<details>
-<summary><b>Secret nằm trong app mobile có an toàn không?</b></summary>
+## 🤝 Contributing
 
-Không — secret trong app đã build luôn trích xuất được. Đó là thiết kế của backend, aegis không thay đổi được, nhưng skill sẽ nói rõ điều này và gợi ý chuyển việc ký sang server/BFF (Next.js, Nuxt có hướng dẫn sẵn).
-</details>
+Adapters for new stacks/state managers, new signing recipes and scanner heuristics are very welcome — see [CONTRIBUTING.md](CONTRIBUTING.md), the [Code of Conduct](CODE_OF_CONDUCT.md) and the [CHANGELOG](CHANGELOG.md). Questions → [Discussions](https://github.com/nvdhai2003mobiledev/aegis/discussions). One non-negotiable rule: **no real company data in this repo.**
 
-## 🗺 Lộ trình
+## 📄 License
 
-- [ ] Client mẫu Kotlin & Swift có test vector
-- [ ] `aegis feature --all`: sinh spec hàng loạt
-- [ ] Nhận diện sẵn thêm bố cục (Clean Architecture Flutter, Android MVVM)
-- [ ] Profile mẫu cho các kiểu backend phổ biến (REST + Bearer, OAuth2)
-
-## 🤝 Đóng góp
-
-Rất hoan nghênh — đặc biệt là adapter cho stack/state mới, công thức ký mới, heuristic scanner. Xem [CONTRIBUTING.md](CONTRIBUTING.md), [Quy tắc ứng xử](CODE_OF_CONDUCT.md) và [CHANGELOG](CHANGELOG.md). Câu hỏi → [Discussions](https://github.com/nvdhai2003mobiledev/aegis/discussions). Luật duy nhất không thương lượng: **không đưa dữ liệu thật của bất kỳ công ty nào vào repo.**
-
-## 📄 Giấy phép
-
-[MIT](LICENSE). Mô hình *Learn → Ask → Do*.
+[MIT](LICENSE). The _Learn → Ask → Do_.
