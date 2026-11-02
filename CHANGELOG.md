@@ -12,6 +12,7 @@
 
 ### Thay đổi
 - Installer `install.sh` / `install.ps1` mặc định cài **bản release mới nhất** thay vì nhánh `main` (`AEGIS_VERSION=main` để lấy bản đang phát triển).
+- README mặc định là **tiếng Anh** (`README.md`); bản tiếng Việt chuyển sang `README.vi.md`. Bỏ banner.
 - README: badge release thay cho badge npm; `npx aegis-insurance` chuyển vào mục cách cài khác cho tới khi phát hành trên npm.
 
 ## [0.2.0] — 2026-11-02
